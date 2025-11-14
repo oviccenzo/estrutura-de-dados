@@ -36,3 +36,7 @@ Node* createNode(int data){
 }
 
 //Função para empilhar(inserir no topo da pilha)
+
+int main(){
+
+}
