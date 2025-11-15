@@ -32,7 +32,7 @@ int isEmpty(Queue *q){
 }
 
 //Verifica se a fila está vazia
-int Enqueue(Queue *q, int valor){
+int enqueue(Queue *q, int valor){
     if(isFull(q)){
         printf("Fila esta cheia. Nao e possivel inseirir na fila: %d\n", valor);
         return 0;
@@ -45,7 +45,7 @@ int Enqueue(Queue *q, int valor){
 }
 
 //Remove um valor na fila
-int Dequeue(Queue *q, int *valor){
+int dequeue(Queue *q, int *valor){
     if(isEmpty(q)){
         printf("Fila esta cheia. Nao e possivel remover da fila!\n");
         return 0;
@@ -85,4 +85,33 @@ void displayQueue(Queue *q){
 
 int main(){
 
+    //Criando e inicializando a fila
+    Queue myQueue;
+    initializeQueue(&myQueue, 10);
+    initializeQueue(&myQueue, 10);
+    initializeQueue(&myQueue, 10);
+
+    //Inserindo elementos na fila
+    enqueue(&myQueue);
+
+    //Exibindo a fila
+    displayQueue(&myQueue);
+
+    //Removendo um elemento na fila
+    int valor;
+    if(dequeue(&myQueue, &valor)){
+        printf("Elementos removido da fila: %d\n", valor);
+    }
+
+    //Exibindo a fila novamente
+    displayQueue(&myQueue);
+
+    //Inserindo mais elementos
+    enqueue(&myQueue, 70);
+    enqueue(&myQueue, 90);
+    enqueue(&myQueue, 120);
+
+    displayQueue(&myQueue);
+
+    return 0;
 }
