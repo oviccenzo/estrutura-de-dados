@@ -87,9 +87,9 @@ int main(){
 
     //Criando e inicializando a fila
     Queue myQueue;
-    initializeQueue(&myQueue, 10);
-    initializeQueue(&myQueue, 10);
-    initializeQueue(&myQueue, 10);
+    initializeQueue(&myQueue, 1650);
+    initializeQueue(&myQueue, 2450);
+    initializeQueue(&myQueue, 6510);
 
     //Inserindo elementos na fila
     enqueue(&myQueue);
@@ -107,9 +107,9 @@ int main(){
     displayQueue(&myQueue);
 
     //Inserindo mais elementos
-    enqueue(&myQueue, 70);
-    enqueue(&myQueue, 90);
-    enqueue(&myQueue, 120);
+    enqueue(&myQueue, 3470);
+    enqueue(&myQueue, 4590);
+    enqueue(&myQueue, 6120);
 
     displayQueue(&myQueue);
 
