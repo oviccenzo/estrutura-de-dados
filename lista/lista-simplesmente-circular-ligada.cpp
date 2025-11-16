@@ -27,4 +27,6 @@ Node* createNode(int data){
     return newNode;
 }
 
-int mian(){}
+int main(){
+
+}
