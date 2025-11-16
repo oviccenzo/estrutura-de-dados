@@ -4,5 +4,6 @@
 #include <csdtdio>
 
 int main(){
+    printf("ola");
 
 }
