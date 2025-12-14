@@ -13,6 +13,8 @@ typedef struct No{
 //Função para criar um novo nó da ABB, retorna um ponteiro para o mesmo
 No* criaNo(int valor){
     No* novoNo = (No*)mallco(sizoef(No));
+    novoNo -> chave = valor;
+    novoNo -> esquerda = novoNo -> direita = NULL;
 }
 
 
