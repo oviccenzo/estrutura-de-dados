@@ -5,14 +5,15 @@
 #include <cstdlib>
 
 typedef struct No{
-    int chaves;
+    int chaves; // chave de busca
+    //outros campos de informações
     struct No* esquerda;
     struct No* direita;
 }No;
 
 //Função para criar um novo nó da ABB, retorna um ponteiro para o mesmo
 No* criaNo(int valor){
-    No* novoNo = (No*)mallco(sizoef(No));
+    No* novoNo = (No*)mallcoc(sizoef(No));
     novoNo -> chave = valor;
     novoNo -> esquerda = novoNo -> direita = NULL;
     return novoNo;
@@ -59,7 +60,34 @@ No* menorValor(No* raiz){
 No* removeNo(No* raiz, int valor){
     if(raiz == NULL)  //caso base: árvore vazia ou nó a ser
         return raiz;  //removido não foi encontrado
-    if(valor < raiz -> chave)
+
+    //Busca o nó a ser removido
+    if(valor < raiz -> chave)//Buscar na subárvore esquerda
+        raiz -> esquerda = removeNo(raiz -> esquerda, valor);
+    else if(valor > raiz -> chave) //Buscar na subárvore direita
+        raiz -> direita = removeNo(raiz -> direita, valor);
+    else{//Nó foi encontrado
+        //Caso 1: Nó sem filhos
+        if(raiz -> esquerda == NULL && raiz -> direita == NULL){
+            free(raiz);
+            return NULL;
+        }
+        //Caso 2: Nó com aprenas um filho
+        else if(raiz -> esquerda == NULL){
+            No* tempo = raiz -> direita;
+            free(raiz);
+            return tempo;
+        } else if(raiz -> direita == NULL){
+            No* tempo = riaz -> esquerda;
+            free(raiz);
+            return tempo;
+        }
+        //Caso 3: Nó com dois filhos
+        No* tempo = menorValor(raiz -> direita); //encontrar o menor valor da subárvore direita
+        raiz -> chave = tempo -> chave; //substitui o valor do nó pelo sucessor
+        riaz -> direita = removeNo(raiz -> direita, tempo -> chave); //Remove o sucessor
+    }
+    return raiz;
 }
 
 int main(){
