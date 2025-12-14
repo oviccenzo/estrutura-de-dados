@@ -5,7 +5,7 @@
 #include <cstdlib>
 
 typedef struct No{
-    int chaves; // chave de busca
+    int chave; // chave de busca
     //outros campos de informações
     struct No* esquerda;
     struct No* direita;
@@ -13,7 +13,7 @@ typedef struct No{
 
 //Função para criar um novo nó da ABB, retorna um ponteiro para o mesmo
 No* criaNo(int valor){
-    No* novoNo = (No*)malloc(sizoef(No));
+    No* novoNo = (No*)malloc(sizeof(No));
     novoNo -> chave = valor;
     novoNo -> esquerda = novoNo -> direita = NULL;
     return novoNo;
@@ -28,11 +28,11 @@ No* insere(No* raiz, int valor){
         return raiz;
     }
     else
-        if(valor > raiz -> chave){
-            raiz -> direita = insere(raiz -> direita, valor);
-        }
-        else//O valor já existe na ABB, somente retornar a raiz
-            return raiz;//Retorna a raiz para manter a árvore conectado
+    if(valor > raiz -> chave){
+        raiz -> direita = insere(raiz -> direita, valor);
+    }
+    else//O valor já existe na ABB, somente retornar a raiz
+        return raiz;//Retorna a raiz para manter a árvore conectado
 }
 
 //Função para busca pela chuva valor na ABB
@@ -51,7 +51,7 @@ No* menorValor(No* raiz){
     //Enquanto o nó atual não for NULL e
     //possuir um filho a esquerda
     while(atual && atual -> esquerda != NULL)
-        atual = atual esquerda;
+        atual = atual -> esquerda;
     return atual;
 }
 
@@ -72,24 +72,24 @@ No* removeNo(No* raiz, int valor){
             free(raiz);
             return NULL;
         }
-        //Caso 2: Nó com aprenas um filho
+            //Caso 2: Nó com aprenas um filho
         else if(raiz -> esquerda == NULL){
             No* tempo = raiz -> direita;
             free(raiz);
             return tempo;
         } else if(raiz -> direita == NULL){
-            No* tempo = riaz -> esquerda;
+            No* tempo = raiz -> esquerda;
             free(raiz);
             return tempo;
         }
         //Caso 3: Nó com dois filhos
         No* tempo = menorValor(raiz -> direita); //encontrar o menor valor da subárvore direita
         raiz -> chave = tempo -> chave; //substitui o valor do nó pelo sucessor
-        riaz -> direita = removeNo(raiz -> direita, tempo -> chave); //Remove o sucessor
+        raiz -> direita = removeNo(raiz -> direita, tempo -> chave); //Remove o sucessor
     }
     return raiz;
 }
 
 int main(){
-    printf("");
+    // printf("");
 }
