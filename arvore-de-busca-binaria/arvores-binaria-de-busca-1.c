@@ -30,6 +30,7 @@ No* insere(No* raiz, int valor){
     else
     if(valor > raiz -> chave){
         raiz -> direita = insere(raiz -> direita, valor);
+        return raiz;
     }
     else//O valor já existe na ABB, somente retornar a raiz
         return raiz;//Retorna a raiz para manter a árvore conectado
@@ -90,6 +91,46 @@ No* removeNo(No* raiz, int valor){
     return raiz;
 }
 
+//Função para imprimir a árvore em ordem
+void emOrdem(No* raiz){
+    if(raiz != NULL){
+        emOrdem(raiz -> esquerda);
+        printf("%d ", raiz -> chave);
+        emOrdem(raiz -> direita);
+    }
+}
+
 int main(){
-    // printf("");
+
+    No* raiz = NULL;
+
+    //Inserção de valores na árvore
+    raiz = insere(raiz, 50);
+    raiz = insere(raiz, 30);
+    raiz = insere(raiz, 20);
+    raiz = insere(raiz, 40);
+    raiz = insere(raiz, 70);
+    raiz = insere(raiz, 60);
+    raiz = insere(raiz, 80);
+
+     printf("Arvore em-Ordem da remocao: ");
+     emOrdem(raiz);
+     printf("\n");
+
+     //Busca de um valor
+     int chaveBusca = 40;
+     No* resultadoBusca = busca(raiz, chaveBusca);
+     if(resultadoBusca != NULL)
+         printf("Chave %d encontrada na arvore.\n",chaveBusca);
+     else
+         printf("Chave %d nao encontrada na arvore.\n", chaveBusca);
+
+     //Remoção de valores
+     raiz = removeNo(raiz, 20); //Removendo um nó folha
+     raiz = removeNo(raiz, 50); //Removendo a raiz com dois filhos
+     raiz = removeNo(raiz, 30); //Removendo um nó com um filho
+
+     printf("Arvore em-Ordem apos remocoes: ");
+     emOrdem(raiz);
+     printf("\n");
 }
